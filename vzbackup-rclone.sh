@@ -80,9 +80,9 @@ if [[ ${COMMAND} == 'job-end' ||  ${COMMAND} == 'job-abort' ]]; then
     --drive-chunk-size=32M move $_filename4 rclonegdrive:/vzdump/$timepath \
     -v --stats=60s --transfers=16 --checkers=16
 
-    # clean up remote backup location, all files more than 30d are deleted
+    # clean up remote backup location, all files more than 2d are deleted
     rclone --config /root/.config/rclone/rclone.conf \
-    --min-age 30d  delete rclonegdrive:/vzdump --rmdirs
+    --min-age 2d  delete rclonegdrive:/vzdump --rmdirs
     
     #rm -rfv $rcloneroot
 fi
