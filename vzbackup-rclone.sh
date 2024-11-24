@@ -3,7 +3,7 @@
 
 ############ /START CONFIG
 dumpdir="/mnt/pve/usb-backup/dump" # Set this to where your vzdump files are stored
-MAX_AGE=30 # This is the age in days to keep local backup copies. Local backups older than this are deleted.
+MAX_AGE=7 # This is the age in days to keep local backup copies. Local backups older than this are deleted.
 ############ /END CONFIG
 
 _bdir="$dumpdir"
