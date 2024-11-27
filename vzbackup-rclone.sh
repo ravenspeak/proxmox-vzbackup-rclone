@@ -82,7 +82,13 @@ if [[ ${COMMAND} == 'job-end' ||  ${COMMAND} == 'job-abort' ]]; then
 
     # clean up remote backup location, all files more than 2d are deleted
     rclone --config /root/.config/rclone/rclone.conf \
-    --min-age 2d delete rclonegdrive:/vzdump --rmdirs
+    --min-age 2d delete rclonegdrive:/vzdump --rmdirs &&
+
+    rclone --config /root/.config/rclone/rclone.conf \
+    rmdirs rclonegdrive:/vzdump &&
+
+    rclone --config /root/.config/rclone/rclone.conf \
+    cleanup rclonegdrive:
     
     #rm -rfv $rcloneroot
 fi
