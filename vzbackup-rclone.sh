@@ -24,7 +24,7 @@ if [[ ${COMMAND} == 'rehydrate' ]]; then
     #echo "For example, today would be: $timepath"
     #read -p 'Rehydrate Date => ' rehydrate
     rclone --config /root/.config/rclone/rclone.conf \
-    --drive-chunk-size=32M copy rclonegdrive:/vzdump/$rehydrate$CMDARCHIVE $dumpdir \
+    --drive-chunk-size=32M copy rcloneonedrive:/vzdump/$rehydrate$CMDARCHIVE $dumpdir \
     -v --stats=60s --transfers=16 --checkers=16
 fi
 
@@ -40,7 +40,7 @@ if [[ ${COMMAND} == 'backup-end' ]]; then
     echo "rcloning $rclonedir"
     #ls $rclonedir
     rclone --config /root/.config/rclone/rclone.conf \
-    --drive-chunk-size=32M copy $tarfile rclonegdrive:/vzdump/$timepath \
+    --drive-chunk-size=32M copy $tarfile rcloneonedrive:/vzdump/$timepath \
     -v --stats=60s --transfers=16 --checkers=16
 fi
 
@@ -77,18 +77,18 @@ if [[ ${COMMAND} == 'job-end' ||  ${COMMAND} == 'job-abort' ]]; then
     echo "rcloning $_filename4"
     #ls $rclonedir
     rclone --config /root/.config/rclone/rclone.conf \
-    --drive-chunk-size=32M move $_filename4 rclonegdrive:/vzdump/$timepath \
+    --drive-chunk-size=32M move $_filename4 rcloneonedrive:/vzdump/$timepath \
     -v --stats=60s --transfers=16 --checkers=16
 
     # clean up remote backup location, all files more than 2d are deleted
     rclone --config /root/.config/rclone/rclone.conf \
-    --min-age 2d delete rclonegdrive:/vzdump --rmdirs &&
+    --min-age 2d delete rcloneonedrive:/vzdump --rmdirs &&
 
     rclone --config /root/.config/rclone/rclone.conf \
-    rmdirs rclonegdrive:/vzdump &&
+    rmdirs rcloneonedrive:/vzdump &&
 
     rclone --config /root/.config/rclone/rclone.conf \
-    cleanup rclonegdrive:
+    cleanup rcloneonedrive:
     
     #rm -rfv $rcloneroot
 fi
