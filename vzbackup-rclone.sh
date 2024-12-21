@@ -78,11 +78,12 @@ if [[ ${COMMAND} == 'job-end' ||  ${COMMAND} == 'job-abort' ]]; then
     #ls $rclonedir
     rclone --config /root/.config/rclone/rclone.conf \
     --drive-chunk-size=32M move $_filename4 rcloneonedrive:/vzdump/$timepath \
+    --user-agent "ISV|rclone.org|rclone/v1.55.1" \
     -v --stats=60s --transfers=16 --checkers=16
 
     # clean up remote backup location, all files more than 2d are deleted
     rclone --config /root/.config/rclone/rclone.conf \
-    --min-age 2d delete rcloneonedrive:/vzdump --rmdirs &&
+    --min-age 2d delete rcloneonedrive:/vzdump --rmdirs --onedrive-hard-delete &&
 
     rclone --config /root/.config/rclone/rclone.conf \
     rmdirs rcloneonedrive:/vzdump &&
