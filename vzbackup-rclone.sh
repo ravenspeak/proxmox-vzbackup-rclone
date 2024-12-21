@@ -87,9 +87,6 @@ if [[ ${COMMAND} == 'job-end' ||  ${COMMAND} == 'job-abort' ]]; then
 
     rclone --config /root/.config/rclone/rclone.conf \
     rmdirs rcloneonedrive:/vzdump &&
-
-    rclone --config /root/.config/rclone/rclone.conf \
-    cleanup rcloneonedrive:
     
     #rm -rfv $rcloneroot
 fi
