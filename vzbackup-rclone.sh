@@ -86,7 +86,7 @@ if [[ ${COMMAND} == 'job-end' ||  ${COMMAND} == 'job-abort' ]]; then
     --min-age 2d --max-depth -4 delete rcloneonedrive:/vzdump &&
 
     rclone --config /root/.config/rclone/rclone.conf \
-    rmdirs rcloneonedrive:/vzdump &&
+    rmdirs rcloneonedrive:/vzdump
     
     #rm -rfv $rcloneroot
 fi
