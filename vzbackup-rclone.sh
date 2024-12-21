@@ -24,7 +24,8 @@ if [[ ${COMMAND} == 'rehydrate' ]]; then
     #echo "For example, today would be: $timepath"
     #read -p 'Rehydrate Date => ' rehydrate
     rclone --config /root/.config/rclone/rclone.conf \
-    --drive-chunk-size=32M copy rcloneonedrive:/vzdump/$rehydrate$CMDARCHIVE $dumpdir \
+    --drive-chunk-size=40M copy rcloneonedrive:/vzdump/$rehydrate$CMDARCHIVE $dumpdir \
+    --user-agent "ISV|rclone.org|rclone/v1.55.1" \
     -v --stats=60s --transfers=16 --checkers=16
 fi
 
@@ -40,7 +41,8 @@ if [[ ${COMMAND} == 'backup-end' ]]; then
     echo "rcloning $rclonedir"
     #ls $rclonedir
     rclone --config /root/.config/rclone/rclone.conf \
-    --drive-chunk-size=32M copy $tarfile rcloneonedrive:/vzdump/$timepath \
+    --drive-chunk-size=40M copy $tarfile rcloneonedrive:/vzdump/$timepath \
+    --user-agent "ISV|rclone.org|rclone/v1.55.1" \
     -v --stats=60s --transfers=16 --checkers=16
 fi
 
